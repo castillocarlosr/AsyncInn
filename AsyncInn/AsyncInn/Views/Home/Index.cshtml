@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+
+    Layout = "_Layout";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AsyncInn</title>
+    <link href="~/StyleSheet.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>Welcome to the Amazing Async Inn Hotel Management System run by Carlos.</h1>
+    <h2>-----------------------------------------------------------------------</h2>
+    <h3>Click on what you would like to manage today</h3>
+    <nav>
+        <ul>
+            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li><a asp-controller="Hotel" asp-action="Index">Manage Hotels</a></li>
+            <li><a asp-controller="Amenities" asp-action="Index">Manage Amenities</a></li>
+            <li><a asp-controller="Room" asp-action="Index">Manage Rooms</a></li>
+            <li><a asp-controller="HotelRoom" asp-action="Index">Manage hotel rooms</a></li>
+            <li><a asp-controller="RoomAmenities" asp-action="Index">Manage room amenities</a></li>
+        </ul>
+    </nav>
+
+</body>
+</html>
+
+
+
+
