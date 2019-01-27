@@ -37,7 +37,7 @@ This assignment took about 10 hours to complete.  There are no xUnit Testing for
 
 Below are screen shots of what this should look like.
 ###Screen Shot 
-![](Assets/SchemaHotel.PNG?raw=true)
+![](Assets/SchemaHotel.png?raw=true)
 ![](Assets/Home.PNG?raw=true)
 ![](Assets/DropDown.PNG?raw=true)
 
