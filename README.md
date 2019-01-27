@@ -37,9 +37,9 @@ This assignment took about 10 hours to complete.  There are no xUnit Testing for
 
 Below are screen shots of what this should look like.
 ###Screen Shot 
-![](assets/SchemaHotel.PNG?raw=true)
-![](assets/Home.PNG?raw=true)
-![](assets/DropDown.PNG?raw=true)
+![](Assets/SchemaHotel.PNG?raw=true)
+![](Assets/Home.PNG?raw=true)
+![](Assets/DropDown.PNG?raw=true)
 
 Lab started on January 25, 2019 by Carlos R. Castillo
 Thanks for stopping by and stay classy Seattle.
