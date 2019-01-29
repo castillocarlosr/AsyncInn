@@ -16,7 +16,7 @@ a{
     color: black;
 }
 li{
-    display: inline-block;
+    display: block;
     padding: 10px;
 }
 .create{
@@ -25,3 +25,12 @@ li{
     color:darkred;
     padding:inherit;
 }
+tr{
+    border-bottom-style: double;
+
+    border-bottom-color:brown;
+    border-bottom-width:thick;
+    padding-bottom: 2em;
+}
+
+

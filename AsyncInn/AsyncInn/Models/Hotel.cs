@@ -10,11 +10,16 @@ namespace AsyncInn.Models
     {
         public int ID { get; set; }
 
+        [Required]
         public string Name { get; set; }
 
+        [Required]
         [Display(Name = "Full Address")]
         public string Address { get; set; }
 
+        [Required]
+        [DataType(DataType.PhoneNumber)]
+        [Display(Name = "Phone Number")]
         public string Phone { get; set; }
 
         //Navigation Properties

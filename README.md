@@ -40,6 +40,8 @@ Below are screen shots of what this should look like.
 ![](Assets/SchemaHotel.png?raw=true)
 ![](Assets/Home.PNG?raw=true)
 ![](Assets/DropDown.PNG?raw=true)
+![](Assets/DropDown2.PNG?raw=true)
+![](Assets/HotelTable.PNG?raw=true)
 
 Lab started on January 25, 2019 by Carlos R. Castillo
 Thanks for stopping by and stay classy Seattle.
