@@ -11,6 +11,7 @@ namespace AsyncInn.Models
         public int ID { get; set; }
 
         [Display(Name="Name of Amenity")]
+        [Required]
         public string Name { get; set; }
 
         //Navigation Properties

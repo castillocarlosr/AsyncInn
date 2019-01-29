@@ -6,6 +6,8 @@
     Layout = "_Layout";
 }
 
+<!--<link href="~/StyleSheet2.scss" rel="stylesheet"/>-->
+<link href="~/StyleSheet.css" rel="stylesheet" />
 <h1>Create</h1>
 
 <h4>RoomAmenities</h4>
@@ -16,11 +18,11 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="AmenitiesID" class="control-label"></label>
-                <select asp-for="AmenitiesID" class ="form-control" asp-items="ViewBag.AmenitiesID"></select>
+                <select asp-for="AmenitiesID" class="form-control" asp-items="ViewBag.AmenitiesID"></select>
             </div>
             <div class="form-group">
                 <label asp-for="RoomID" class="control-label"></label>
-                <select asp-for="RoomID" class ="form-control" asp-items="ViewBag.RoomID"></select>
+                <select asp-for="RoomID" class="form-control" asp-items="ViewBag.RoomID"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

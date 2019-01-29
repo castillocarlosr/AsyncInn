@@ -2,7 +2,10 @@
 
 @{
     ViewData["Title"] = "Index";
+
+    Layout = "_Layout";
 }
+
 <link href="~/StyleSheet.css" rel="stylesheet" />
 <h1>Amenities  Table</h1>
 
@@ -22,17 +25,21 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <button type="button" class="btn btn-outline-primary"><a asp-action="Edit" asp-route-id="@item.ID">Edit</a></button>
+                    <button type="button" class="btn btn-outline-success"><a asp-action="Details" asp-route-id="@item.ID">Details</a></button>
+                    <button type="button" class="btn btn-outline-danger"><a asp-action="Delete" asp-route-id="@item.ID">Delete</a></button>
+
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>

@@ -9,23 +9,34 @@
 <head>
     <title>AsyncInn</title>
     <link href="~/StyleSheet.css" rel="stylesheet" />
+
+
 </head>
-<body>
-    <h1>Welcome to the Amazing Async Inn Hotel Management System run by Carlos.</h1>
-    <h2>-----------------------------------------------------------------------</h2>
-    <h3>Click on what you would like to manage today</h3>
-    <nav>
-        <ul>
-            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-            <li><a asp-controller="Hotel" asp-action="Index">Manage Hotels</a></li>
-            <li><a asp-controller="Amenities" asp-action="Index">Manage Amenities</a></li>
-            <li><a asp-controller="Room" asp-action="Index">Manage Rooms</a></li>
-            <li><a asp-controller="HotelRoom" asp-action="Index">Manage hotel rooms</a></li>
-            <li><a asp-controller="RoomAmenities" asp-action="Index">Manage room amenities</a></li>
-        </ul>
-    </nav>
+<body id="needle">
+    <div class="jumbotron">
+        <h1 class="display-4">Welcome to the Amazing Async Inn Hotel Management System run by Carlos.</h1>
+        <h2>-----------------------------------------------------------------------</h2>
+        <p class="lead">Click on what you would like to manage today</p>
+        <hr class="my-4">
+        <p>You can manage Hotel, Room, and Amenities.</p>
+        <p>You can handle associations for Hotel-Room and Room-Amenity.</p>
+        <nav>
+            <ul>
+                <!-- <li><a class="btn btn-primary btn-lg" role="button" asp-controller="Home" asp-action="Index">Home</a></li> -->
+                <li><a class="btn btn-primary btn-lg" role="button" asp-controller="Hotel" asp-action="Index">Hotels</a></li>
+                <li><a class="btn btn-primary btn-lg" role="button" asp-controller="Amenities" asp-action="Index">Amenities</a></li>
+                <li><a class="btn btn-primary btn-lg" role="button" asp-controller="Room" asp-action="Index">Rooms</a></li>
+                <li><a asp-controller="HotelRoom" asp-action="Index">Hotel-Rooms</a></li>
+                <li><a asp-controller="RoomAmenities" asp-action="Index">Room-Amenities</a></li>
+            </ul>
+        </nav>
+
+    </div>
+    
 
 </body>
+
+
 </html>
 
 

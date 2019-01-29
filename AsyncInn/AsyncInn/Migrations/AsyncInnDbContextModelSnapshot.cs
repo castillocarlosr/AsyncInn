@@ -24,11 +24,39 @@ namespace AsyncInn.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.HasKey("ID");
 
                     b.ToTable("Amenity");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Name = "Coffee Maker"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Name = "Air Conditioner"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            Name = "Mini Bar"
+                        },
+                        new
+                        {
+                            ID = 4,
+                            Name = "Egyption Satin 5000 thread Sheets"
+                        },
+                        new
+                        {
+                            ID = 5,
+                            Name = "Gigabit Wifi Internet"
+                        });
                 });
 
             modelBuilder.Entity("AsyncInn.Models.Hotel", b =>
@@ -37,15 +65,55 @@ namespace AsyncInn.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Address");
+                    b.Property<string>("Address")
+                        .IsRequired();
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
-                    b.Property<string>("Phone");
+                    b.Property<string>("Phone")
+                        .IsRequired();
 
                     b.HasKey("ID");
 
                     b.ToTable("Hotels");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Address = "1 CodeFellow Dr., Seattle, WA 98121",
+                            Name = "Seattle Inn",
+                            Phone = "555-999-1234"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Address = "2 Simpsons Dr., Springfield, AK 98765",
+                            Name = "Springfield Inn",
+                            Phone = "222-333-1234"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            Address = "3 Futurama Up., New New York, NY 11238",
+                            Name = "Mars Inn",
+                            Phone = "111-222-2345"
+                        },
+                        new
+                        {
+                            ID = 4,
+                            Address = "4 Dragon Ln., Westoro, FL 44556",
+                            Name = "Game Of Throne Inn",
+                            Phone = "444-555-6789"
+                        },
+                        new
+                        {
+                            ID = 5,
+                            Address = "5 Morty Dr., Bellevue, WA 10001",
+                            Name = "Pickle Rick Inn",
+                            Phone = "101-001-1001"
+                        });
                 });
 
             modelBuilder.Entity("AsyncInn.Models.HotelRoom", b =>
@@ -75,11 +143,50 @@ namespace AsyncInn.Migrations
 
                     b.Property<int>("Layouts");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.HasKey("ID");
 
                     b.ToTable("Rooms");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Layouts = 1,
+                            Name = "SuperHero room"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Layouts = 2,
+                            Name = "OuterSpace room"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            Layouts = 0,
+                            Name = "Artist room"
+                        },
+                        new
+                        {
+                            ID = 4,
+                            Layouts = 0,
+                            Name = "SideKick room"
+                        },
+                        new
+                        {
+                            ID = 5,
+                            Layouts = 1,
+                            Name = "Alien room"
+                        },
+                        new
+                        {
+                            ID = 6,
+                            Layouts = 2,
+                            Name = "The Incredibles Family room"
+                        });
                 });
 
             modelBuilder.Entity("AsyncInn.Models.RoomAmenities", b =>

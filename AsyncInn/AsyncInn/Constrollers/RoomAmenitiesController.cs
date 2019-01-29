@@ -49,8 +49,8 @@ namespace AsyncInn.Constrollers
         // GET: RoomAmenities/Create
         public IActionResult Create()
         {
-            ViewData["AmenitiesID"] = new SelectList(_context.Amenity, "ID", "ID");
-            ViewData["RoomID"] = new SelectList(_context.Rooms, "ID", "ID");
+            ViewData["AmenitiesID"] = new SelectList(_context.Amenity, "ID", "Name");
+            ViewData["RoomID"] = new SelectList(_context.Rooms, "ID", "Name");
             return View();
         }
 
@@ -85,8 +85,8 @@ namespace AsyncInn.Constrollers
             {
                 return NotFound();
             }
-            ViewData["AmenitiesID"] = new SelectList(_context.Amenity, "ID", "ID", roomAmenities.AmenitiesID);
-            ViewData["RoomID"] = new SelectList(_context.Rooms, "ID", "ID", roomAmenities.RoomID);
+            ViewData["AmenitiesID"] = new SelectList(_context.Amenity, "ID", "Name", roomAmenities.AmenitiesID);
+            ViewData["RoomID"] = new SelectList(_context.Rooms, "ID", "Name", roomAmenities.RoomID);
             return View(roomAmenities);
         }
 
