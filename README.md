@@ -33,7 +33,7 @@ You may look at the source code to ensure nothing evil is in there.
 * RoomAmenities: Pure Join Table with a composite key of primary keys from Room table & Amenities Table. Many to one relationship to both Room table & Amenities table.
 * Amenities: Property of specific amenities.  One to many relationship with RoomAmenities table.
 
-##Update 01/29/2019
+## Update 01/29/2019
 * Changed Room Controller to have Dependency Injection.
 * Changed Hotel Controller to have Dependency Injection.
 * Changed Amenities Controller to have Dependency Injection.
