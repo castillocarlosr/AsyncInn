@@ -16,9 +16,9 @@ namespace AsyncInn.Models.Interfaces
         Task<IEnumerable<Room>> GetRoom();
 
         //Edit Amenities
-        void EditRoom(Room room);
+        Task EditRoom(Room room);
 
         //Delete Amenities
-        void DeleteRoom(int id);
+        Task DeleteRoom(int id);
     }
 }

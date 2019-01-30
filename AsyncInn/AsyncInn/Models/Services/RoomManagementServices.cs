@@ -23,16 +23,22 @@ namespace AsyncInn.Models.Services
             await _context.SaveChangesAsync();
         }
 
-        public void DeleteRoom(int id)
+        public async Task<IEnumerable<Room>> GetRooms()
+        {
+            return await _context.Rooms.ToListAsync();
+        }
+
+        public async Task DeleteRoom(int id)
         {
             Room rooms = _context.Rooms.FirstOrDefault(room => room.ID == id);
             _context.Rooms.Remove(rooms);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void EditRoom(Room room)
+        public async Task EditRoom(Room room)
         {
             _context.Rooms.Update(room);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<Room> GetRoom(int id)

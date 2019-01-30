@@ -21,21 +21,22 @@ namespace AsyncInn.Constrollers
         }
 
         // GET: Room
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View(_context.GetRoom());
+            return View(await _context.GetRoom());
         }
 
         // GET: Room/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int id)
         {
+            /*
             if (id == null)
             {
                 return NotFound();
             }
-
-            var room = await _context.Rooms
-                .FirstOrDefaultAsync(m => m.ID == id);
+            */
+            var room = await _context.GetRoom(id);
+                //.FirstOrDefaultAsync(m => m.ID == id);
             if (room == null)
             {
                 return NotFound();
@@ -68,14 +69,15 @@ namespace AsyncInn.Constrollers
         }
 
         // GET: Room/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int id)
         {
+            /*
             if (id == null)
             {
                 return NotFound();
             }
-
-            var room = await _context.Rooms.FindAsync(id);
+            */
+            var room = await _context.GetRoom(id);
             if (room == null)
             {
                 return NotFound();
@@ -99,8 +101,10 @@ namespace AsyncInn.Constrollers
             {
                 try
                 {
-                    _context.Update(room);
-                    await _context.SaveChangesAsync();
+                    //_context.Update(room);
+                    //await _context.SaveChangesAsync();
+                    await _context.EditRoom(room);
+                    //return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -119,15 +123,16 @@ namespace AsyncInn.Constrollers
         }
 
         // GET: Room/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int id)
         {
+            /*
             if (id == null)
             {
                 return NotFound();
             }
-
-            var room = await _context.Rooms
-                .FirstOrDefaultAsync(m => m.ID == id);
+            */
+            var room = await _context.GetRoom(id);
+                //.FirstOrDefaultAsync(m => m.ID == id);
             if (room == null)
             {
                 return NotFound();
@@ -141,15 +146,20 @@ namespace AsyncInn.Constrollers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            /*
             var room = await _context.Rooms.FindAsync(id);
             _context.Rooms.Remove(room);
             await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+            */
+            await _context.DeleteRoom(id);
             return RedirectToAction(nameof(Index));
         }
 
         private bool RoomExists(int id)
         {
-            return _context.Rooms.Any(e => e.ID == id);
+            //return _context.Rooms.Any(e => e.ID == id);
+            return _context.GetRoom(id) != null;
         }
     }
 }
