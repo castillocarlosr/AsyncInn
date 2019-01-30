@@ -72,6 +72,8 @@ namespace AsyncInn.Constrollers
             return View(roomAmenities);
         }
 
+
+        /*  This is to take out the Update/Edit ability......maybe
         // GET: RoomAmenities/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -126,6 +128,7 @@ namespace AsyncInn.Constrollers
             ViewData["RoomID"] = new SelectList(_context.Rooms, "ID", "ID", roomAmenities.RoomID);
             return View(roomAmenities);
         }
+        */
 
         // GET: RoomAmenities/Delete/5
         public async Task<IActionResult> Delete(int? id)

@@ -7,14 +7,15 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AsyncInn.Data;
 using AsyncInn.Models;
+using AsyncInn.Models.Interfaces;
 
 namespace AsyncInn.Constrollers
 {
     public class HotelController : Controller
     {
-        private readonly AsyncInnDbContext _context;
+        private readonly IHotelManager _context;
 
-        public HotelController(AsyncInnDbContext context)
+        public HotelController(IHotelManager context)
         {
             _context = context;
         }
@@ -22,19 +23,20 @@ namespace AsyncInn.Constrollers
         // GET: Hotel
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Hotels.ToListAsync());
+            return View(await _context.GetHotel());
         }
 
         // GET: Hotel/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int id)
         {
+            /*
             if (id == null)
             {
                 return NotFound();
             }
-
-            var hotel = await _context.Hotels
-                .FirstOrDefaultAsync(m => m.ID == id);
+            */
+            var hotel = await _context.GetHotel(id);
+                //.FirstOrDefaultAsync(m => m.ID == id);
             if (hotel == null)
             {
                 return NotFound();
@@ -58,22 +60,24 @@ namespace AsyncInn.Constrollers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(hotel);
-                await _context.SaveChangesAsync();
+                //_context.Add(hotel);
+                //await _context.SaveChangesAsync();
+                await _context.CreateHotel(hotel);
                 return RedirectToAction(nameof(Index));
             }
             return View(hotel);
         }
 
         // GET: Hotel/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int id)
         {
+            /*
             if (id == null)
             {
                 return NotFound();
             }
-
-            var hotel = await _context.Hotels.FindAsync(id);
+            */
+            var hotel = await _context.GetHotel(id);
             if (hotel == null)
             {
                 return NotFound();
@@ -97,8 +101,9 @@ namespace AsyncInn.Constrollers
             {
                 try
                 {
-                    _context.Update(hotel);
-                    await _context.SaveChangesAsync();
+                    //_context.Update(hotel);
+                    //await _context.SaveChangesAsync();
+                    await _context.EditHotel(hotel);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -117,15 +122,16 @@ namespace AsyncInn.Constrollers
         }
 
         // GET: Hotel/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int id)
         {
+            /*
             if (id == null)
             {
                 return NotFound();
             }
-
-            var hotel = await _context.Hotels
-                .FirstOrDefaultAsync(m => m.ID == id);
+            */
+            var hotel = await _context.GetHotel(id);
+                //.FirstOrDefaultAsync(m => m.ID == id);
             if (hotel == null)
             {
                 return NotFound();
@@ -139,15 +145,19 @@ namespace AsyncInn.Constrollers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            /*
             var hotel = await _context.Hotels.FindAsync(id);
             _context.Hotels.Remove(hotel);
             await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+            */
+            await _context.DeleteHotel(id);
             return RedirectToAction(nameof(Index));
         }
 
         private bool HotelExists(int id)
         {
-            return _context.Hotels.Any(e => e.ID == id);
+            return _context.GetHotel(id) != null;
         }
     }
 }
