@@ -7,22 +7,23 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AsyncInn.Data;
 using AsyncInn.Models;
+using AsyncInn.Models.Interfaces;
 
 namespace AsyncInn.Constrollers
 {
     public class HotelController : Controller
     {
-        private readonly AsyncInnDbContext _context;
+        private readonly IHotelManager _context;
 
-        public HotelController(AsyncInnDbContext context)
+        public HotelController(IHotelManager context)
         {
             _context = context;
         }
 
         // GET: Hotel
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.Hotels.ToListAsync());
+            return View(_context.GetHotel());
         }
 
         // GET: Hotel/Details/5
@@ -58,8 +59,9 @@ namespace AsyncInn.Constrollers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(hotel);
-                await _context.SaveChangesAsync();
+                //_context.Add(hotel);
+                //await _context.SaveChangesAsync();
+                await _context.CreateHotel(hotel);
                 return RedirectToAction(nameof(Index));
             }
             return View(hotel);

@@ -7,22 +7,23 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AsyncInn.Data;
 using AsyncInn.Models;
+using AsyncInn.Models.Interfaces;
 
 namespace AsyncInn.Constrollers
 {
     public class AmenitiesController : Controller
     {
-        private readonly AsyncInnDbContext _context;
+        private readonly IAmenitiesManager _context;
 
-        public AmenitiesController(AsyncInnDbContext context)
+        public AmenitiesController(IAmenitiesManager context)
         {
             _context = context;
         }
 
         // GET: Amenities
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.Amenity.ToListAsync());
+            return View(_context.GetAmenities());
         }
 
         // GET: Amenities/Details/5
@@ -58,8 +59,9 @@ namespace AsyncInn.Constrollers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(amenities);
-                await _context.SaveChangesAsync();
+                //_context.CreateAmenities(amenities);
+                await _context.CreateAmenities(amenities);
+
                 return RedirectToAction(nameof(Index));
             }
             return View(amenities);
