@@ -11,22 +11,34 @@ using AsyncInn.Models.Interfaces;
 
 namespace AsyncInn.Constrollers
 {
-    public class HotelController : Controller
+    public class RoomController : Controller
     {
-        private readonly IHotelManager _context;
+        private readonly IRoomManager _context;
 
-        public HotelController(IHotelManager context)
+        public RoomController(IRoomManager context)
         {
             _context = context;
         }
 
-        // GET: Hotel
+        // GET: Room
         public async Task<IActionResult> Index()
         {
-            return View(await _context.GetHotel());
+            return View(await _context.GetRoom());
         }
 
-        // GET: Hotel/Details/5
+        //This is supposed to be the search from the docs
+        [HttpPost]
+        public async Task<IActionResult> Index(string searchString)
+        {
+            var room = await _context.GetRoom();
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                room = room.Where(r => r.Name.Contains(searchString));
+            }
+            return View(room);
+        }
+
+        // GET: Room/Details/5
         public async Task<IActionResult> Details(int id)
         {
             /*
@@ -35,40 +47,40 @@ namespace AsyncInn.Constrollers
                 return NotFound();
             }
             */
-            var hotel = await _context.GetHotel(id);
+            var room = await _context.GetRoom(id);
                 //.FirstOrDefaultAsync(m => m.ID == id);
-            if (hotel == null)
+            if (room == null)
             {
                 return NotFound();
             }
 
-            return View(hotel);
+            return View(room);
         }
 
-        // GET: Hotel/Create
+        // GET: Room/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Hotel/Create
+        // POST: Room/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Name,Address,Phone")] Hotel hotel)
+        public async Task<IActionResult> Create([Bind("ID,Name,Layouts")] Room room)
         {
             if (ModelState.IsValid)
             {
-                //_context.Add(hotel);
+                //_context.Add(room);
                 //await _context.SaveChangesAsync();
-                await _context.CreateHotel(hotel);
+                await _context.CreateRoom(room);
                 return RedirectToAction(nameof(Index));
             }
-            return View(hotel);
+            return View(room);
         }
 
-        // GET: Hotel/Edit/5
+        // GET: Room/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
             /*
@@ -77,22 +89,22 @@ namespace AsyncInn.Constrollers
                 return NotFound();
             }
             */
-            var hotel = await _context.GetHotel(id);
-            if (hotel == null)
+            var room = await _context.GetRoom(id);
+            if (room == null)
             {
                 return NotFound();
             }
-            return View(hotel);
+            return View(room);
         }
 
-        // POST: Hotel/Edit/5
+        // POST: Room/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Address,Phone")] Hotel hotel)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Layouts")] Room room)
         {
-            if (id != hotel.ID)
+            if (id != room.ID)
             {
                 return NotFound();
             }
@@ -101,13 +113,14 @@ namespace AsyncInn.Constrollers
             {
                 try
                 {
-                    //_context.Update(hotel);
+                    //_context.Update(room);
                     //await _context.SaveChangesAsync();
-                    await _context.EditHotel(hotel);
+                    await _context.EditRoom(room);
+                    //return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!HotelExists(hotel.ID))
+                    if (!RoomExists(room.ID))
                     {
                         return NotFound();
                     }
@@ -118,10 +131,10 @@ namespace AsyncInn.Constrollers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(hotel);
+            return View(room);
         }
 
-        // GET: Hotel/Delete/5
+        // GET: Room/Delete/5
         public async Task<IActionResult> Delete(int id)
         {
             /*
@@ -130,34 +143,35 @@ namespace AsyncInn.Constrollers
                 return NotFound();
             }
             */
-            var hotel = await _context.GetHotel(id);
+            var room = await _context.GetRoom(id);
                 //.FirstOrDefaultAsync(m => m.ID == id);
-            if (hotel == null)
+            if (room == null)
             {
                 return NotFound();
             }
 
-            return View(hotel);
+            return View(room);
         }
 
-        // POST: Hotel/Delete/5
+        // POST: Room/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             /*
-            var hotel = await _context.Hotels.FindAsync(id);
-            _context.Hotels.Remove(hotel);
+            var room = await _context.Rooms.FindAsync(id);
+            _context.Rooms.Remove(room);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
             */
-            await _context.DeleteHotel(id);
+            await _context.DeleteRoom(id);
             return RedirectToAction(nameof(Index));
         }
 
-        private bool HotelExists(int id)
+        private bool RoomExists(int id)
         {
-            return _context.GetHotel(id) != null;
+            //return _context.Rooms.Any(e => e.ID == id);
+            return _context.GetRoom(id) != null;
         }
     }
 }

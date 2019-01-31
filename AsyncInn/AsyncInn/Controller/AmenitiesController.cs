@@ -27,6 +27,18 @@ namespace AsyncInn.Constrollers
             //return View(await _context.Amenities.ToListAsync());
         }
 
+        //This is supposed to be the search from the docs
+        [HttpPost]
+        public async Task<IActionResult> Index(string searchString)
+        {
+            var amenity = await _context.GetAmenities();
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                amenity = amenity.Where(a => a.Name.Contains(searchString));
+            }
+            return View(amenity);
+        }
+
         // GET: Amenities/Details/5
         public async Task<IActionResult> Details(int id)
         {
