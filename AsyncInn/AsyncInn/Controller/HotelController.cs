@@ -23,6 +23,8 @@ namespace AsyncInn.Constrollers
         // GET: Hotel
         public async Task<IActionResult> Index()
         {
+            
+
             return View(await _context.GetHotel());
         }
 
@@ -34,6 +36,7 @@ namespace AsyncInn.Constrollers
             if (!String.IsNullOrEmpty(searchString))
             {
                 hotels = hotels.Where(hotel => hotel.Name.Contains(searchString));
+                ViewBag.TotalHotels = hotels.Count();
             }
             return View(hotels);
         }

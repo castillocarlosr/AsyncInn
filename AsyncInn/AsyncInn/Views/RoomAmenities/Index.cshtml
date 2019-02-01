@@ -14,8 +14,8 @@
 <p>
     <a asp-controller="Home" asp-action="Index">Home</a>
 </p>
-<table class="table">
-    <thead>
+<table class="table table-dark">
+    <thead class="thead-light">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Room)
@@ -36,11 +36,11 @@
                 @Html.DisplayFor(modelItem => item.Amenity.ID)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { item.RoomID, item.AmenitiesID })
-                @Html.ActionLink("Details", "Details", new { item.RoomID, item.AmenitiesID })
-                @Html.ActionLink("Delete", "Delete", new { item.RoomID, item.AmenitiesID })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                <!-- @Html.ActionLink("Edit", "Edit", new { item.RoomID, item.AmenitiesID }) -->
+                    @Html.ActionLink("Details", "Details", new { item.RoomID, item.AmenitiesID })
+                    @Html.ActionLink("Delete", "Delete", new { item.RoomID, item.AmenitiesID })
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>
