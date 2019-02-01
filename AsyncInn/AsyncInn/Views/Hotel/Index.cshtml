@@ -14,13 +14,14 @@
 </p>
 <form asp-controller="Hotel" asp-action="Index">
     <p>
-        Title: <input type="text" name="SearchString">
+        Title: <input type="text" name="SearchString" placeholder="Example Inn">
         <input type="submit" value="Filter" />
     </p>
 </form>
 <p>
-    <a asp-controller="Home" asp-action="Index">Home</a>
+    <a asp-controller="Home" asp-action="Index">Home</a> 
 </p>
+<label> Number of hotels in the system: </label> @Model.ToArray().Length
 <table class="table table-dark">
     <thead class="thead-light">
         <tr>
