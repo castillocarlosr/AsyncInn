@@ -20,9 +20,18 @@ namespace AsyncInn.Constrollers
             _context = context;
         }
 
+        //ViewBag to list # of rooms per hotel
+        IList<RoomAmenities> amenitiesPerRoom = new List<RoomAmenities>()
+        {
+            //something
+
+        };
+
         // GET: Room
         public async Task<IActionResult> Index()
         {
+            ViewBag.TotalAmenities = amenitiesPerRoom.Count();
+
             return View(await _context.GetRoom());
         }
 
