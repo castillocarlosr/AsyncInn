@@ -27,17 +27,18 @@ namespace AsyncInn.Constrollers
         }
 
         // GET: RoomAmenities/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int AmenitiesID, int RoomID)
         {
+            /*
             if (id == null)
             {
                 return NotFound();
             }
-
+            */
             var roomAmenities = await _context.RoomAmenity
                 .Include(r => r.Amenity)
                 .Include(r => r.Room)
-                .FirstOrDefaultAsync(m => m.AmenitiesID == id);
+                .FirstOrDefaultAsync(m => m.AmenitiesID == AmenitiesID && m.RoomID == RoomID);
             if (roomAmenities == null)
             {
                 return NotFound();
@@ -73,16 +74,19 @@ namespace AsyncInn.Constrollers
         }
 
 
-        //  This is to take out the Update/Edit ability......maybe
+        //  T
         // GET: RoomAmenities/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int AmenitiesID, int RoomID)
         {
+            /*
             if (id == null)
             {
                 return NotFound();
             }
-
-            var roomAmenities = await _context.RoomAmenity.FindAsync(id);
+            */
+            var roomAmenities = await _context.RoomAmenity
+                .Include(r => r.Amenity).Include(r => r.Room)
+                .FirstOrDefaultAsync(m => m.AmenitiesID == AmenitiesID && m.RoomID == RoomID);
             if (roomAmenities == null)
             {
                 return NotFound();

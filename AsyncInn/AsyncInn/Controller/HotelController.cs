@@ -20,15 +20,22 @@ namespace AsyncInn.Constrollers
             _context = context;
         }
 
+        //ViewBag to list # of rooms per hotel
+        IList<HotelRoom> roomPerHotel = new List<HotelRoom>()
+        {
+            //something
+
+        };
+
         // GET: Hotel
         public async Task<IActionResult> Index()
         {
-            
+            ViewBag.TotalRooms = roomPerHotel.Count();
 
             return View(await _context.GetHotel());
         }
 
-        //This is supposed to be the search from the docs
+        //This is the search field
         [HttpPost]
         public async Task<IActionResult> Index(string searchString)
         {

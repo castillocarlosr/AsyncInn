@@ -30,12 +30,16 @@ namespace AsyncInn
         public void ConfigureServices(IServiceCollection services)
         {
             //Declare Dependencies
+            //Below are two connections.  One to Azure, the other default to local computer.
             
             services.AddMvc();
-
+            /*
             services.AddDbContext<AsyncInnDbContext>(options =>
             options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
-
+            */
+            services.AddDbContext<AsyncInnDbContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            
             services.AddScoped<IRoomManager, RoomManagementServices>();
             services.AddScoped<IHotelManager, HotelManagementServices>();
             services.AddScoped<IAmenitiesManager, AmenitiesManagementServices>();
